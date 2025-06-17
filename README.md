@@ -1,1 +1,216 @@
-# Secure-password-manager
+# Secure-password-manager<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Password Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <h1>Password Manager</h1>
+        <ul>
+            <li class="profile-menu">
+                <span id="profile-icon" style="cursor: pointer;">👤</span>
+                <div id="profile-dropdown" class="dropdown-menu">
+                    <a id="nav-profile">Profile</a>
+                    <a id="nav-dashboard">Dashboard</a>
+                    <a id="nav-add-password">Add Password</a>
+                    <a id="nav-view-passwords">View Passwords</a>
+                    <a id="nav-logout">Logout</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <div id="alerts"></div>
+        
+        <!-- Profile Page -->
+        <div id="profile-page" class="page">
+            <h2>Profile</h2>
+            <div id="profile-details">
+                <p><strong>Email:</strong> <span id="profile-email"></span></p>
+                <p id="profile-not-logged-in" style="display: none;">You are not logged in.</p>
+            </div>
+            <div class="profile-actions">
+                <button id="profile-login" class="btn">Login</button>
+                <button id="profile-register" class="btn">Register</button>
+            </div>
+        </div>
+        
+        <!-- Login Page -->
+        <div id="login-page" class="page">
+            <h2>Login</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-email">Email:</label>
+                    <input type="email" id="login-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password:</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+            <p>Don't have an account? <a id="show-register" style="cursor: pointer;">Register here</a></p>
+            <button id="back-from-login" class="btn-back">Back</button>
+        </div>
+        
+        <!-- Register Page -->
+        <div id="register-page" class="page">
+            <h2>Register</h2>
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="register-email">Email:</label>
+                    <input type="email" id="register-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Password:</label>
+                    <input type="password" id="register-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-confirm-password">Confirm Password:</label>
+                    <input type="password" id="register-confirm-password" required>
+                </div>
+                <button type="submit">Register</button>
+            </form>
+            <p>Already have an account? <a id="show-login" style="cursor: pointer;">Login here</a></p>
+            <button id="back-from-register" class="btn-back">Back</button>
+        </div>
+        
+        <!-- Setup Master Password Page -->
+        <div id="setup-master-page" class="page">
+            <h2>Set Up Master Password</h2>
+            <p>Your master password must contain:</p>
+            <ul>
+                <li>At least 8 characters</li>
+                <li>At least one uppercase letter</li>
+                <li>At least one number</li>
+                <li>At least one special character</li>
+            </ul>
+            
+            <form id="setup-master-form">
+                <div class="form-group">
+                    <label for="master-password">Master Password:</label>
+                    <input type="password" id="master-password" required>
+                    <div id="master-strength" class="password-strength"></div>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-master">Confirm Master Password:</label>
+                    <input type="password" id="confirm-master" required>
+                </div>
+                <button type="submit">Set Master Password</button>
+            </form>
+            <button id="back-from-master" class="btn-back">Back</button>
+        </div>
+        
+        <!-- Dashboard Page -->
+        <div id="dashboard-page" class="page">
+            <h2>Welcome, <span id="user-email"></span></h2>
+            
+            <div class="instructions">
+                <h2>About This Password Manager</h2>
+                <p>Your personal vault for secure password storage with military-grade encryption.</p>
+                
+                <div class="features">
+                    <div class="feature-card">
+                        <h3>🔐 Secure Storage</h3>
+                        <p>All passwords encrypted with AES-256 before storage</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🔑 One Master Key</h3>
+                        <p>Only you can decrypt with your master password</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🌐 Client-Side Only</h3>
+                        <p>Your data never leaves your browser</p>
+                    </div>
+                </div>
+
+                <div class="usage-steps">
+                    <h3>How to Use This Password Manager</h3>
+                    <ol>
+                        <li><strong>Register</strong> with your email and a strong password</li>
+                        <li><strong>Set up</strong> your master password (this will be used to encrypt all your stored passwords)</li>
+                        <li><strong>Add passwords</strong> for your various accounts and services</li>
+                        <li><strong>View/Decrypt</strong> passwords when needed by entering your master password</li>
+                        <li><strong>Manage</strong> your passwords through the intuitive interface</li>
+                    </ol>
+                </div>
+
+                <div class="security-notes">
+                    <h3>Important Security Notes</h3>
+                    <ul>
+                        <li>Your master password is never stored - only a hash is kept</li>
+                        <li>All passwords are encrypted before storage</li>
+                        <li>Without the master password, encrypted data is useless</li>
+                        <li>All encryption/decryption happens in your browser</li>
+                        <li>Never share your master password with anyone</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="dashboard-actions">
+                <button id="go-add-password" class="btn">Add New Password</button>
+                <button id="go-view-passwords" class="btn">View Saved Passwords</button>
+            </div>
+            <button id="back-from-dashboard" class="btn-back">Back</button>
+        </div>
+        
+        <!-- Add Password Page -->
+        <div id="add-password-page" class="page">
+            <h2>Add New Password</h2>
+            <form id="add-password-form">
+                <div class="form-group">
+                    <label for="service-name">Service Name:</label>
+                    <input type="text" id="service-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit">Save Password</button>
+            </form>
+            <button id="back-from-add-password" class="btn-back">Back</button>
+        </div>
+        
+        <!-- View Passwords Page -->
+        <div id="view-passwords-page" class="page">
+            <h2>Saved Passwords</h2>
+            
+            <div id="decrypted-password-container" class="decrypted-password" style="display: none;">
+                <div><strong>Service:</strong> <span id="decrypted-service"></span></div>
+                <div><strong>Username:</strong> <span id="decrypted-username"></span></div>
+                <div><strong>Password:</strong> <span id="decrypted-password">********</span> <span id="toggle-decrypted-password" class="eye-icon" style="cursor: pointer;">👁️</span></div>
+                <button id="delete-decrypted" class="btn-delete">Delete</button>
+            </div>
+            
+            <table id="passwords-table">
+                <thead>
+                    <tr>
+                        <th>Service Name</th>
+                        <th>Username</th>
+                        <th>Password</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="passwords-tbody">
+                    <!-- Passwords will be inserted here by JavaScript -->
+                </tbody>
+            </table>
+            
+            <p id="no-passwords-message">No passwords saved yet.</p>
+            
+            <button id="go-add-password-from-view" class="btn">Add New Password</button>
+            <button id="back-from-view-passwords" class="btn-back">Back</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
